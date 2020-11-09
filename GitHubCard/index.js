@@ -17,6 +17,15 @@
     and append the returned markup to the DOM as a child of .cards
 */
 
+axios
+.get('https://api.github.com/users/paulineharen')
+.then(res => {
+  console.log(res)
+  const aCard = gitHubCard(res);
+  document.querySelector('.cards').appendChild(gitHubCard);
+});
+
+
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -49,6 +58,34 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function cardMaker(user) {
+  const mainDiv = document.createElement('div');
+  mainDiv.classList.add('card');
+
+  const img = document.createElement('img');
+  img.src = user.data.avatar_url;
+
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('card-info');
+
+  const name = document.createElement('h3');
+  name.classList.add('name')
+  name.textContent =  user.data.name;
+
+  const username = document.createElement('p');
+  username.classList.add('username')
+  username.textContent = user.data.login;
+
+  const location = document.createElement('p');
+  location.textContent = `Location: ${user.data.location}`;
+
+  const profile = document.createElement('p');
+  profile.textContent = `Profile: <a href=\"${.user.data.html_url}">`;
+
+  const followers = document.createElement('p');
+  followers.textContent
+}
 
 /*
   List of LS Instructors Github username's:
